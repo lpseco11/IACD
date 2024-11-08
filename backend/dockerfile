@@ -1,25 +1,11 @@
-# Step 1: Use an official Node.js image as the base image
 FROM node:14
 
-# Step 2: Set the working directory in the container
 WORKDIR /backend
 
-# Step 3: Copy the package.json and package-lock.json files to the working directory
-COPY package*.json ./
+COPY package.json .
 
-# Step 4: Install dependencies
 RUN npm install
 
-# If you're using Yarn instead of npm, you can replace the line above with:
-# RUN yarn install
-
-# Step 5: Copy the rest of the application files
 COPY . .
 
-# Step 6: Expose the port that your app runs on
-# Replace 3000 with the port your backend uses if different
-EXPOSE 80
-
-# Step 7: Start the application
-# Replace "start" with your start script if it’s different (e.g., npm run dev)
 CMD ["node","app.js"]
