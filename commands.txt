@@ -28,6 +28,21 @@ Assignment 2 - Container connectivity and Volumes
 
 (frontend) - docker run -d --name front_container2 -p 3000:3000 frontend
 
+Assignment 3 - Docker compose
+
+docker tag backend:network lpseco11/iacd_backend:network
+
+docker tag frontend lpseco11/iacd_frontend
+
+docker push lpseco11/iacd_backend:network 
+
+docker push lpseco11/iacd_frontend 
+
+docker compose up -d
+
+docker compose down 
+
+
 
 
 

@@ -2,32 +2,41 @@ version: "3.8"
 
 services:
 
-  mongo_container:
+  mongo_container2:
     image: mongo
     volumes:
       - mongo_volume:/data/db
-    ports:
-      - 27017:27017
+    networks:
+      - net
+    
 
-  backend_container:
-    image: backend
+  back_container2:
+    image: lpseco11/iacd_backend:network
     ports:
       - 80:80
     depends_on:
-      - mongo_container
-    
+      - mongo_container2
+    networks:
+      - net
+    volumes:
+      - backend_volume:/logs
+    stdin_open: true
+    tty: true
 
-  frontend_container:
-    image: frontend
+  front_container2:
+    image: lpseco11/iacd_frontend
     ports:
-      - 4000:3000
+      - 3000:3000
     depends_on:
-      - backend_container
+      - back_container2
 
 
 volumes:
   mongo_volume:
   backend_volume:
 
-# docker-compose up --build
+networks:
+  net:
+
+
 
