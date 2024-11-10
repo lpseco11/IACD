@@ -1,42 +1,48 @@
-version: "3.8"
 
 services:
-
-  mongo_container2:
-    image: mongo
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    # environment:
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - mongo_volume:/data/db
-    networks:
-      - net
-    
 
-  back_container2:
-    image: lpseco11/iacd_backend:network
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - 80:80
+
     depends_on:
-      - mongo_container2
-    networks:
-      - net
-    volumes:
-      - backend_volume:/logs
+      - mongodb
+    # networks: 
+    #   - net
+    # volumes:
+    #   - backend_volume:/logs
     stdin_open: true
     tty: true
 
-  front_container2:
-    image: lpseco11/iacd_frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
-    depends_on:
-      - back_container2
+    # depends_on:
+    #   - back_container
 
 
 volumes:
   mongo_volume:
-  backend_volume:
+#   backend_volume:
 
-networks:
-  net:
+# networks:
+#   net:
 
 
 
