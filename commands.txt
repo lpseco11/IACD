@@ -1,0 +1,35 @@
+Comandos projeto 1 IACD
+
+Assignment 1 - Container Basics
+
+(mongo) - docker pull mongo
+(backend) - docker build -t backend backend/
+(frontend) - docker build -t frontend frontend/
+
+(backend) docker run -d -p 80:80(port mapping) --name back_container backend(image)
+
+(frontend) docker run -d -p 3000:3000(port mapping) --name front_container frontend(image)
+
+(mongo) docker run -d -p 27017:27017 --name mongo_container mongo
+
+Assignment 2 - Container connectivity and Volumes
+
+(network) - docker network create net
+
+(backend) - docker build -t backend:network backend/
+
+(mongo) - docker volume create mongo_vol
+
+(backend) - docker volume create backend_vol
+
+(mongo) docker run -d --name mongo_container2 --network net -v mongo_vol:/data/db mongo
+
+(backend) - docker run -d --name back_container2 --network net -v backend_vol:/logs -p 80:80 backend:network
+
+(frontend) - docker run -d --name front_container2 -p 3000:3000 frontend
+
+
+
+
+
+
