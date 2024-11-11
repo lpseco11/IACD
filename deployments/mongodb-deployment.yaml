@@ -22,5 +22,7 @@ spec:
             - mountPath: /data/db
               name: mongo-volume
       volumes:
-        - name: mongo-volume
-          emptyDir: {}
+      - name: mongo-volume
+        persistentVolumeClaim:
+          claimName: mongodb-pvc
+

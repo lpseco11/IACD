@@ -21,4 +21,11 @@ spec:
             - containerPort: 80
           env:
             - name: MONGO_URL
-              value: "mongodb://mongodb-service:27017/course-goals"  # Use the correct service URL
+              value: "mongodb://mongodb-service:27017/course-goals"
+          volumeMounts:
+            - mountPath: /logs  # Monta o volume no diretório /logs
+              name: nodejs-logs-volume
+      volumes:
+        - name: nodejs-logs-volume
+          persistentVolumeClaim:
+            claimName: nodejs-logs-pvc  # O PVC que criamos

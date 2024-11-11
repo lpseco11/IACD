@@ -20,10 +20,6 @@ services:
 
     depends_on:
       - mongodb
-    # networks: 
-    #   - net
-    # volumes:
-    #   - backend_volume:/logs
     stdin_open: true
     tty: true
 
@@ -33,16 +29,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
-    # depends_on:
-    #   - back_container
 
 
 volumes:
   mongo_volume:
-#   backend_volume:
-
-# networks:
-#   net:
 
 
 

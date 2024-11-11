@@ -19,3 +19,10 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 3000
+          volumeMounts:
+            - mountPath: /logs  # Monta o volume no diretório /logs
+              name: nodejs-logs-volume
+      volumes:
+        - name: nodejs-logs-volume
+          persistentVolumeClaim:
+            claimName: nodejs-logs-pvc  # O PVC que criamos

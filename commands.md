@@ -72,16 +72,18 @@ kubectl apply -f ./deployments
 kubectl apply -f ./services
 
 
+
+
+## Assignment 5 - Persistant Data Claim
+
+kubectl apply -f ./data_persistance
+
+
+
+
 kubectl get deployments -n iacd
 kubectl get services -n iacd
 kubectl get pods -n iacd
 
 kubectl delete all --all -n iacd
-
-
-
-
-
-
-
-
+kubectl logs mongodb-5dfcb4ff5b-w9z46 -n iacd

@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 80
 
-CMD ["node","app.js"]
+CMD ["sh", "-c", "node app.js >> /logs/app.log 2>&1"]
